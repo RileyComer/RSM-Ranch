@@ -1,7 +1,7 @@
 # RSM-Ranch
 This website allows the RSM Ranch to post owned horses to be viewed by guests of their website.
 
-#Tech Stack
+# Tech Stack
 This website uses react typescript for front end and node js for backend. The website currently uses mongoose to interact with a mongoDB database.
 The project is set up to use docker witch will allow for quick deployment. 
 
