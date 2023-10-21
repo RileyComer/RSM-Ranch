@@ -1,0 +1,29 @@
+Client
+    Landing page
+
+    Our Horses page
+        -(Filter: Current Mares)
+        -(Filter: Current Stallion)
+        -(Filter: foals)
+
+    For sale page
+
+    Sold page
+        -(Filter: Year)
+
+    News page
+
+    Photo page
+
+    About us page
+
+Admin
+    Admin portal
+
+    Create Horse post / Edit Horse post
+
+    Create news post / Edit news post
+
+    Add photos
+
+    Edit about us page

@@ -1,0 +1,156 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /*Brand Color*/
+  --primary-light: #e1e1e1;
+  --primary-dark: #432028;
+
+  /*Shade of primary*/
+  --secondary-light: #432028;
+  --secondary-dark: #e1e1e1;
+
+  /*Stands out*/
+  --accent-light: #bb9d4f;
+  --accent-dark: #bb9d4f;
+
+  --success-color: #28a745;
+  --error-color: #dc3545;
+  --warning-color: #ffc107;
+}
+
+.App{
+  @apply min-h-screen;
+  background-color: var(--primary-light);
+  color: var(--primary-dark);
+  transition: background-color 1s ease;
+}
+
+.App *{
+  transition: color 1s ease;
+}
+
+.dark{
+  background-color: var(--primary-dark);
+  color: var(--primary-light);
+}
+
+.text{
+  @apply py-2 px-4 rounded-md;
+}
+
+.text.highlight{
+  color: var(--accent-light);
+  border-radius: 10;
+}
+
+.dark .text.text.highlight{
+  color: var(--accent-dark);
+}
+
+.light-container{
+  background-color: var(--secondary-light);
+}
+
+.dark .light-container{
+  background-color: var(--primary-dark);
+}
+
+.ghost-button{
+  @apply py-2 px-4 border;
+  border-color: var(--primary-light);
+  color: var(--primary-light);
+  border-radius: 50px;
+  border: 5px solid;
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.dark .ghost-button{
+  border-color: var(--secondary-dark);
+  color: var(--secondary-dark);
+}
+
+.mid-container{
+  @apply flex;
+  height: calc(100vh - 70px);
+}
+
+main{
+  height: 100%;
+  width: 100%;
+  overflow-y: auto;
+}
+
+main::-webkit-scrollbar {
+  width: 0px;
+}
+
+.content-container{
+  width: 100%;
+  height:2000px;
+  margin: auto;
+}
+
+.content-type1{
+  padding-left: 10%;
+  padding-right: 10%;
+  background-color: var(--primary-light);
+  color: var(--secondary-light);
+}
+
+.content-type2{
+  padding-left: 10%;
+  padding-right: 10%;
+  background-color: var(--secondary-light);
+  color: var(--primary-light);
+}
+
+.dark .content-container-type1{
+  background-color: var(--primary-dark);
+  color: var(--secondary-dark);
+}
+
+.dark .content-container-type2{
+  background-color: var(--secondary-dark);
+  color: var(--primary-dark);
+}
+
+/*Alerts*/
+.alert-success {
+  background-color: var(--success-color);
+  color: var(--primary-light);
+}
+
+.alert-error {
+  background-color: var(--error-color);
+  color: var(--primary-light);
+}
+
+.alert-warning {
+  background-color: var(--warning-color);
+  color: var(--primary-dark);
+}
+
+@media screen and (max-width: 768px) {
+  .ghost-button{
+    font-size: 2.5rem;
+  }
+
+  .content-type1{
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+
+  .content-type2{
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .ghost-button{
+    font-size: 2rem;
+  }
+}
