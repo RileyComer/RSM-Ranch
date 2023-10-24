@@ -4,7 +4,7 @@ interface Horse {
     name: string;
     breed: string;
     height: number;
-    discripton: string;
+    description: string;
     gender: string;
     registration?: number;
     dob: string;

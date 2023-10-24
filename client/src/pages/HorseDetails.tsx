@@ -5,8 +5,6 @@ import { useHorseById } from '../hooks/useHorseById';
 function HorseDetails() {
   const { id } = useParams();
   const { horse, loading, error } = useHorseById(id);
-  // Fetch horse details based on the id parameter
-  // You can use this id to fetch data from your API or state
 
   if (loading) {
     return <div>Loading...</div>;
@@ -25,7 +23,6 @@ function HorseDetails() {
       horse
       <h1>{horse.name}</h1>
       <p>Displaying details for horse with ID: {id}</p>
-      {/* Display other horse details */}
     </main>
   );
 }

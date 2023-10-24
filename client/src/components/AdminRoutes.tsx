@@ -8,7 +8,7 @@ function AdminRoutes() {
     const authLogin = useAuth();
 
     if (authLogin === undefined) {
-        return null; // or loading indicator/spinner/etc
+        return null;
     }
 
     return authLogin ? (

@@ -10,9 +10,12 @@ export const useHorses = () => {
   useEffect(() => {
     const fetchHorses = async () => {
       try {
-        const response = await fetch(`${serverAddress}/horses`); // Replace with your API endpoint
+        const response = await fetch(`${serverAddress}/horses`);
+        console.log("Hello");
         if (response.ok) {
+          console.log("Hello");
           const data = await response.json();
+          console.log("Hello");
           setHorses(data);
         } else {
           setError('Failed to fetch horses');
@@ -25,12 +28,7 @@ export const useHorses = () => {
     };
 
     fetchHorses();
-
-    // Clean up function (if needed)
-    return () => {
-      // Cleanup logic (e.g., aborting ongoing requests)
-    };
-  }, []); // Empty dependency array ensures the effect runs once after the initial render
+  }, []);
 
   return { horses, loading, error };
 };

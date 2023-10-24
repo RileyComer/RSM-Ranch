@@ -1,26 +1,8 @@
 import express from "express";
+import isAuthenticated from "../middleware/isAuthenticated";
+import { AuthenticatedRequest } from "../types/AuthenticatedRequest";
 const router = express.Router();
 const Horse= require('../models/horse');
-
-router.post("/", (req, res) => {
-  const horse = Horse({
-    name: 'Sam',
-    breed: 'Thoroughbred',
-    height: 10,
-    discripton: 'Small Horse',
-    gender: 'Mare',
-    registration: 123456,
-    dob: 'Oct 11 2022',
-    price: 500,
-  })
-  horse.save()
-  .then((result: any)=>{
-    res.send(result)
-  })
-  .catch((err: any)=>{
-    console.log(err)
-  });
-});
 
 router.get("/:id", (req, res) => {
   const horseId = req.params.id;
@@ -43,6 +25,16 @@ router.get("/", (req, res) => {
   });
 });
 
-// Other API routes can be defined here
+router.use(isAuthenticated);
+router.post("/", isAuthenticated, (req: AuthenticatedRequest, res) => {
+  const horse = Horse(req.body)
+  horse.save()
+  .then((result: any)=>{
+    res.send(result)
+  })
+  .catch((err: any)=>{
+    console.log(err)
+  });
+});
 
 export default router;

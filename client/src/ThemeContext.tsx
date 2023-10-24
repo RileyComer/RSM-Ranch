@@ -23,7 +23,6 @@ export const useTheme = () => {
 };
 
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
-  // Initialize the theme from local storage or use 'light' as the default theme.
   const [theme, setTheme] = useState<Theme>(() => {
     const storedTheme = localStorage.getItem('theme');
     if(storedTheme==null){
@@ -33,7 +32,6 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   });
 
   useEffect(() => {
-    // Store the theme in local storage whenever it changes.
     localStorage.setItem('theme', theme);
   }, [theme]);
 

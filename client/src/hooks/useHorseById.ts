@@ -12,7 +12,7 @@ export const useHorseById = (id:string|undefined) => {
     const fetchHorseById = async () => {
       if(id!=undefined){
       try {
-        const response = await axios.get(`${serverAddress}/horses/${id}`); // Replace with your API endpoint
+        const response = await axios.get(`${serverAddress}/horses/${id}`);
         setHorse(response.data);
       } catch (error) {
         setError('Error fetching horse');
@@ -23,12 +23,7 @@ export const useHorseById = (id:string|undefined) => {
     };
 
     fetchHorseById();
-
-    // Clean up function (if needed)
-    return () => {
-      // Cleanup logic (e.g., aborting ongoing requests)
-    };
-  }, []); // Empty dependency array ensures the effect runs once after the initial render
+  }, []);
 
   return { horse, loading, error };
 };

@@ -1,4 +1,3 @@
-// Importing express module
 import express from "express";
 const app = express();
 const cors = require('cors');
@@ -28,12 +27,10 @@ import newsRoutes from "./routes/newsRoutes";
 app.use(express.json());
 app.use(cors({ credentials: true, origin: clientOrgin }));
 
-// Handling GET /hello request
 app.use("/auth", authRoutes);
 app.use("/horses", horseRoutes);
 app.use("/news", newsRoutes);
 
-// Handling GET / request
 app.use("/", (req, res, next) => {
-    res.send("This is server");
+    res.send("This is the server");
 });

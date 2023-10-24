@@ -1,29 +1,22 @@
-# Node modules
 node_modules/
 
-# Logs
 logs
 *.log
 
-# Dependency directories
 pids
 *.pid
 *.seed
 *.pid.lock
 
-# Debugging files
 .debug
 .vscode/
 
-# Environment variables
 .env
 
-# Build files
 build/
 dist/
 out/
 .DS_Store
 
-# OS generated files
 .DS_Store
 Thumbs.db

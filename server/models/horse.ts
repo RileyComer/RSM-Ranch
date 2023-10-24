@@ -16,7 +16,7 @@ const horseSchema = new Schema({
         required: true
     },
 
-    discripton: {
+    description: {
         type: String,
         required: true
     },

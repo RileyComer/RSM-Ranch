@@ -29,10 +29,8 @@ async function comparePassword(inputPassword: string, hashedPassword: string) {
 async function hashPassword(password: string) {
     try {
         console.log("Starting to hash");
-        // Generate a salt with 10 rounds (the higher the rounds, the more secure but slower)
         const salt = await bcrypt.genSalt(10);
-
-        // Hash the password using the generated salt
+        
         const hashedPassword = await bcrypt.hash(password, salt);
         console.log("hashed");
 
