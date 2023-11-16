@@ -11,11 +11,8 @@ export const useHorses = () => {
     const fetchHorses = async () => {
       try {
         const response = await fetch(`${serverAddress}/horses`);
-        console.log("Hello");
         if (response.ok) {
-          console.log("Hello");
           const data = await response.json();
-          console.log("Hello");
           setHorses(data);
         } else {
           setError('Failed to fetch horses');

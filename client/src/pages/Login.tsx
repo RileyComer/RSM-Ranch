@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
+import useAuth from '../hooks/useAuth';
 
 function Login() {
   const [username, setUsername] = useState('');
@@ -18,7 +19,7 @@ function Login() {
         const { token } = response.data;
         localStorage.setItem('token', token);
         navigate('/admin/home');
-      }else{
+      } else {
         console.error('Invalid Info');
       }
     } catch (error) {
@@ -26,32 +27,41 @@ function Login() {
     }
   };
 
-  return (
-    <main>
-      <div className='content-container'>
-        <h2>Login</h2>
-        <div className="form-group">
-          <label htmlFor="username">Username:</label>
-          <input
-            type="text"
-            id="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
+  const authLogin = useAuth();
+
+  if (authLogin === undefined) {
+    return null;
+  }
+
+  return authLogin ?
+    (<Navigate to="/admin/home" />)
+    :
+    (
+      <main>
+        <div className='content-container'>
+          <h2>Login</h2>
+          <div className="form-group">
+            <label htmlFor="username">Username:</label>
+            <input
+              type="text"
+              id="username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="password">Password:</label>
+            <input
+              type="password"
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <button onClick={handleLogin}>Login</button>
         </div>
-        <div className="form-group">
-          <label htmlFor="password">Password:</label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        <button onClick={handleLogin}>Login</button>
-      </div>
-    </main>
-  );
+      </main>
+    );
 }
 
 export default Login;

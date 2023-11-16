@@ -1,6 +1,4 @@
-import React, { useState } from 'react';
 import Hero from '../components/Hero';
-import Horse from '../types/Horse';
 import HorseList from '../components/HorseList';
 import { useHorses } from '../hooks/useHorses';
 

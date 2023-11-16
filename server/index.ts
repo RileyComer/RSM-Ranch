@@ -21,6 +21,7 @@ mongoose.connect(uri)
     .catch((err: any) => console.log(err));
 
 import authRoutes from "./routes/authRoutes";
+import uploadsRoutes from "./routes/uploadsRoutes";
 import horseRoutes from "./routes/horseRoutes";
 import newsRoutes from "./routes/newsRoutes";
 
@@ -28,6 +29,7 @@ app.use(express.json());
 app.use(cors({ credentials: true, origin: clientOrgin }));
 
 app.use("/auth", authRoutes);
+app.use("/uploads", uploadsRoutes);
 app.use("/horses", horseRoutes);
 app.use("/news", newsRoutes);
 
