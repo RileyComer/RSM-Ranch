@@ -4,16 +4,13 @@ import { Link } from 'react-router-dom';
 
 interface HorseCardProps {
   horse: Horse;
+  link: string;
 }
 
-const HorseCard: React.FC<HorseCardProps> = ({horse}) => {
-
-  useEffect(() => {
-    console.log(horse);
-  }, []);
+const HorseCard: React.FC<HorseCardProps> = ({horse, link}) => {
 
   return (
-    <Link to={`/horse/${horse._id}`} className="horse-card">
+    <Link to={`${link}/${horse._id}`} className="horse-card">
       <h2>{horse.name}</h2>
       <p>{horse._id}</p>
       <p>Breed: {horse.breed}</p>

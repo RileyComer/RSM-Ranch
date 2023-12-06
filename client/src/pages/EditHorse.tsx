@@ -1,5 +1,7 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
-import useAddHorse from '../hooks/useAddHorse';
+import { useHorse } from '../hooks/useHorse';
+import { useParams } from 'react-router-dom';
+import useUpdateHorse from '../hooks/useUpdateHorse';
 import { Navigate, useNavigate } from 'react-router-dom';
 
 interface HorseData {
@@ -8,7 +10,7 @@ interface HorseData {
   height: number;
   description: string;
   gender: string;
-  registration: 0;
+  registration?: number;
   dob: string;
   price: number;
   photos: {
@@ -17,37 +19,58 @@ interface HorseData {
   }[];
 }
 
-function AddHorse() {
+function EditHorse() {
   let navigate = useNavigate();
-
+  const { id } = useParams();
+  const { horse, loading: getHorseLodaing, error: getHorseError } = useHorse(id);
   const [horseData, setHorseData] = useState<HorseData>({
-    name: '',
-    breed: '',
+    name: "",
+    breed: "",
     height: 0,
-    description: '',
-    gender: '',
+    description: "",
+    gender: "",
     registration: 0,
-    dob: '',
+    dob: "",
     price: 0,
     photos: [],
   });
+  const [imageUrls, setImageUrls] = useState<string[]>([]);
 
-  const { addHorse, loading, error } = useAddHorse();
+  useEffect(() => {
+    if (!getHorseError && horse !== null && id != null) {
+      setHorseData((prevHorseData) => ({
+        ...prevHorseData,
+        name: horse.name,
+        breed: horse.breed,
+        height: horse.height,
+        description: horse.description,
+        gender: horse.gender,
+        registration: horse.registration,
+        dob: horse.dob,
+        price: horse.price,
+      }));
+      if (horse.photos !== undefined) {
+        setImageUrls(horse.photos.map((photo) => photo))
+      }
+    }
+  }, [horse])
+
+  const { updateHorse, loading: updateHorseLoading, error: updateHorseError } = useUpdateHorse();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await addHorse(horseData);
-      if(!loading && !error){
+      await updateHorse(horseData, id, imageUrls);
+
+      if (!updateHorseLoading && !updateHorseError) {
         navigate('/admin/home');
-      }else{
+      } else {
         console.error('Error adding horse!');
       }
     } catch (err) {
       console.error('Error adding horse:', err);
     }
-  };
-
+  }
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setHorseData(prevData => ({
@@ -86,10 +109,18 @@ function AddHorse() {
     }));
   };
 
+  const handleRemoveUrl = (index: number) => {
+    if (imageUrls !== undefined) {
+      const updatedImageUrls = [...imageUrls];
+      updatedImageUrls.splice(index, 1);
+      setImageUrls(updatedImageUrls);
+    };
+  };
+
   return (
     <main>
       <div className='content-container'>
-        <p className="text">Add Horse Page</p>
+        <p className="text">Edit Horse Page</p>
         <form onSubmit={handleSubmit}>
           <input type="text" name="name" value={horseData.name} onChange={handleInputChange} placeholder="Name" />
           <input type="text" name="breed" value={horseData.breed} onChange={handleInputChange} placeholder="Breed" />
@@ -101,6 +132,14 @@ function AddHorse() {
           <input type="number" name="price" value={horseData.price} onChange={handleInputChange} placeholder="Price" />
           <input type="file" accept="image/*" multiple onChange={handlePhotoChange} />
           <div>
+            {imageUrls !== undefined && (imageUrls.map((photo, index) => (
+              <div key={index} className="image-preview">
+                <img src={photo} alt={`Preview ${index}`} style={{ width: '100px', height: '100px', marginRight: '10px' }} />
+                <button type="button" onClick={() => handleRemoveUrl(index)}>
+                  Remove
+                </button>
+              </div>
+            )))}
             {horseData.photos.map((photo, index) => (
               <div key={index} className="image-preview">
                 <img src={photo.previewURL} alt={`Preview ${index}`} style={{ width: '100px', height: '100px', marginRight: '10px' }} />
@@ -110,10 +149,10 @@ function AddHorse() {
               </div>
             ))}
           </div>
-          <button type="submit">Add Horse</button>
+          <button type="submit">Update Horse</button>
         </form>
       </div>
     </main>
   )
 }
-export default AddHorse;
+export default EditHorse;

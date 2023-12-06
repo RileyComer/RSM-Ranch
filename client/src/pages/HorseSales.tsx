@@ -22,7 +22,7 @@ function HorseSales() {
       />
       <div className='content-container'>
         <div className='content-type1'>
-        <HorseList horses={horses} />
+        <HorseList horses={horses} link="/horse"/>
         </div>
         <div className='content-type2'>
           <p className="text">Horses for Sale</p>

@@ -8,12 +8,12 @@ interface ApiResponse {
     }[];
 }
 
-const useAddHorse = () => {
+const useUpdateHorse = () => {
     const [loading, setloading] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const serverAddress = process.env.REACT_APP_SERVER_ADDRESS;
 
-    const addHorse = async (horse: any) => {
+    const updateHorse = async (horse: any, id:string|undefined, imageUrls: string[]|undefined) => {
         setloading(true);
         setError(null);
 
@@ -25,6 +25,11 @@ const useAddHorse = () => {
             }
 
             const photoURLs: string[] = [];
+            if(imageUrls!==undefined){
+                for(const url of imageUrls){
+                    photoURLs.push(url);
+                }
+            }
 
             for (const photo of horse.photos) {
                 const formData = new FormData();
@@ -45,7 +50,7 @@ const useAddHorse = () => {
 
                 photoURLs.push(imgUrl);
             }
-            const newHorse = {
+            const updatedHorse = {
                 name: horse.name,
                 breed: horse.breed,
                 height: horse.height,
@@ -57,7 +62,7 @@ const useAddHorse = () => {
                 photos: photoURLs,
             };
 
-            await axios.post(`${serverAddress}/horses`, newHorse, {
+            await axios.put(`${serverAddress}/horses/${id}`, updatedHorse, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                 },
@@ -71,7 +76,7 @@ const useAddHorse = () => {
         }
     };
 
-    return { addHorse, loading, error };
+    return { updateHorse, loading, error };
 };
 
-export default useAddHorse;
+export default useUpdateHorse;

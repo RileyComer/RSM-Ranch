@@ -1,9 +1,9 @@
 import { useParams } from 'react-router-dom';
-import { useHorseById } from '../hooks/useHorseById';
+import { useHorse } from '../hooks/useHorse';
 
 function HorseDetails() {
   const { id } = useParams();
-  const { horse, loading, error } = useHorseById(id);
+  const { horse, loading, error } = useHorse(id);
 
   if (loading) {
     return <div>Loading...</div>;

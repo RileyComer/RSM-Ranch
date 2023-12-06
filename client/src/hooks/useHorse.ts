@@ -2,14 +2,14 @@ import { useState, useEffect } from 'react';
 import Horse from '../types/Horse';
 import axios from 'axios';
 
-export const useHorseById = (id:string|undefined) => {
+export const useHorse = (id:string|undefined) => {
     const [horse, setHorse] = useState<Horse|null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string|null>(null);
     const serverAddress = process.env.REACT_APP_SERVER_ADDRESS;
 
   useEffect(() => {
-    const fetchHorseById = async () => {
+    const fetchHorse = async () => {
       if(id!=undefined){
       try {
         const response = await axios.get(`${serverAddress}/horses/${id}`);
@@ -22,7 +22,7 @@ export const useHorseById = (id:string|undefined) => {
     }
     };
 
-    fetchHorseById();
+    fetchHorse();
   }, []);
 
   return { horse, loading, error };
