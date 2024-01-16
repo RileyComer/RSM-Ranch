@@ -7,8 +7,8 @@ import Sold from '../pages/Sold';
 import Photos from '../pages/Photos';
 import HorseSales from '../pages/HorseSales';
 import Blog from '../pages/Blog';
-import NavTop from './NavTop';
-import NavSide from './NavSide';
+import NavTop from '../components/NavTopStatic';
+import NavSide from '../components/NavSide';
 import HorseDetails from '../pages/HorseDetails';
 
 function ClientRoutes() {

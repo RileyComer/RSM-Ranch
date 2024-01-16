@@ -3,78 +3,110 @@
 @tailwind utilities;
 
 :root {
-  /*Brand Color*/
-  --primary-light: #e1e1e1;
-  --primary-dark: #432028;
+  /* Light */
+  --primary-light: #FAF6FF;
+  --background-light: #EAEAEA;
+  --secondary-light: #28181F;
+  --secondary-tint-light: #28181f80;
+  --accent-light: #A59577;
+  --header-main-light:#000000;
+  --header-secondary-light:#FFFFFF;
+  --text-main-light:#101010;
+  --text-secondary-light:#ECECEC;
+  --subtle-main-light:#00000080;
+  --subtle-secondary-light:#ffffff80;
 
-  /*Shade of primary*/
-  --secondary-light: #432028;
-  --secondary-dark: #e1e1e1;
+  /* Dark */
+  --primary-dark: #252525;
+  --background-dark: #151515;
+  --secondary-dark: #273532;
+  --secondary-tint-dark: #27353280;
+  --accent-dark: #A59577;
+  --header-main-dark:#FFFFFF;
+  --header-secondary-dark:#FFFFFF;
+  --text-main-dark:#F3F3F3;
+  --text-secondary-dark:#F8F8F8;
+  --subtle-main-dark:#ffffff80;
+  --subtle-secondary-dark:#ffffff80;
 
-  /*Stands out*/
-  --accent-light: #bb9d4f;
-  --accent-dark: #bb9d4f;
-
-  --success-color: #28a745;
-  --error-color: #dc3545;
-  --warning-color: #ffc107;
+  /* Static */
+  --white: #ffffff;
+  --black: #000000;
+  --darken: #00000080;
+  --lighten: #ffffff80;
+  --boy: #677CC7;
+  --girl: #DF81B4;
+  --success: #4F8D44;
+  --error: #dc3545;
+  --warning: #ffc107;
 }
 
 .App{
   @apply min-h-screen;
-  background-color: var(--primary-light);
-  color: var(--primary-dark);
+  background-color: var(--background-light);
+  transition: color 1s ease;
   transition: background-color 1s ease;
 }
 
-.App *{
+.App > *:not(nav-static){
   transition: color 1s ease;
+  transition: background-color 1s ease;
 }
 
 .dark{
-  background-color: var(--primary-dark);
-  color: var(--primary-light);
+  background-color: var(--background-dark);
 }
 
-.text{
-  @apply py-2 px-4 rounded-md;
-}
-
-.text.highlight{
-  color: var(--accent-light);
-  border-radius: 10;
-}
-
-.dark .text.text.highlight{
-  color: var(--accent-dark);
-}
-
-.light-container{
-  background-color: var(--secondary-light);
-}
-
-.dark .light-container{
-  background-color: var(--primary-dark);
-}
-
-.ghost-button{
-  @apply py-2 px-4 border;
-  border-color: var(--primary-light);
-  color: var(--primary-light);
-  border-radius: 50px;
-  border: 5px solid;
-  font-size: 3rem;
+h1{
+  font-size: 2.25rem;
   font-weight: bold;
 }
 
-.dark .ghost-button{
-  border-color: var(--secondary-dark);
-  color: var(--secondary-dark);
+h2{
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.important{ /* background only */
+  font-size: 1rem;
+}
+
+.subtle{
+  font-size: 0.75rem;
+}
+
+.text{
+  font-size: 0.875rem;
+}
+
+.action{
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.primary-container{
+  background-color: var(--primary-light);
+}
+
+.dark .primary-container{
+  background-color: var(--primary-dark);
+}
+
+.button{
+  background-color: var(--accent-light);
+  color: var(--primary-light);
+  border-radius: 5px;
+  padding: 10px 30px;
+}
+
+.dark .button{
+  background-color: var(--accent-dark);
+  color: var(--primary-dark);
 }
 
 .mid-container{
   @apply flex;
-  height: calc(100vh - 70px);
+  height: calc(100vh - 105px);
 }
 
 main{
@@ -84,7 +116,7 @@ main{
 }
 
 main::-webkit-scrollbar {
-  width: 0px;
+  width: 2px;
 }
 
 .content-container{
@@ -92,29 +124,40 @@ main::-webkit-scrollbar {
   height:2000px;
   margin: auto;
 }
+.crow{
+  width: 100%;
+  display: flex;
+  justify-content:center;
+}
 
-.content-type1{
+.c{
+  height: 100%;
+  width: 400px;
+  margin: 0px 10px;
+}
+
+.primary-row{
   padding-left: 10%;
   padding-right: 10%;
   background-color: var(--primary-light);
-  color: var(--secondary-light);
+  color: var(--text-main-light);
 }
 
-.content-type2{
+.secondary-row{
   padding-left: 10%;
   padding-right: 10%;
   background-color: var(--secondary-light);
-  color: var(--primary-light);
+  color: var(--text-secondary-light);
 }
 
-.dark .content-container-type1{
+.dark .primary-row{
   background-color: var(--primary-dark);
-  color: var(--secondary-dark);
+  color: var(--text-main-dark);
 }
 
-.dark .content-container-type2{
+.dark .secondary-row{
   background-color: var(--secondary-dark);
-  color: var(--primary-dark);
+  color: var(--text-secondary-dark);
 }
 
 /*Alerts*/

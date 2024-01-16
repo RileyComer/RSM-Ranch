@@ -1,8 +1,8 @@
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 
 import Login from './pages/Login';
-import AdminRoutes from './components/AdminRoutes';
-import ClientRoutes from './components/ClientRoutes';
+import AdminRoutes from './routes/AdminRoutes';
+import ClientRoutes from './routes/ClientRoutes';
 
 function AppRouter() {
 
